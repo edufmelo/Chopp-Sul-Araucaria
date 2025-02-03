@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chopp Sul Araucária</title>
+        <link rel="icon" type="image/png" href="images/logos/logo1.png ">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@200..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="page-container">
+        
+
+        <!-- Menu -->  
+            <header>
+                <div class="container menu">
+                    <div class="logo" id="logo">
+                        <img src="images/logos/logo-yellow.png" onclick="scrollToSection(event, 'principal')" alt="Logo Chopp Sul">
+                    </div>
+                    <nav id="itens-menu">
+                        <a href="index.html">INÍCIO</a>
+                        <a href="#produtos" onclick="scrollToSection(event, 'produtos')">PRODUTOS</a>
+                        <a href="#sobre" onclick="scrollToSection(event, 'sobre')">SOBRE</a>
+                        <a href="#contato" onclick="scrollToSection(event,'contato')">CONTATO</a>
+                    </nav>
+                    <div id="ambiente">
+                        <div class="checkbox-apple">
+                        <input class="yep" id="check-apple" type="checkbox">
+                        <label for="check-apple"></label>
+                        </div>
+                    </div>
+                    <div class="btn-abrir-menu" id="btn-menu">
+                        <i class="bi bi-list"></i>
+                    </div>
+                </div>
+    
+                <div class="menu-mobile" id="menu-mobile">
+                    <div class="btn-fechar-menu">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                    <div class="menu-itens-mobile">
+                        <nav id="itens-menu-mobile">
+                            <a href="index.html">INÍCIO</a>
+                            <a href="#produtos" onclick="scrollToSection(event, 'produtos')">PRODUTOS</a>
+                            <a href="#sobre" onclick="scrollToSection(event, 'sobre')">SOBRE</a>
+                            <a href="#contato" onclick="scrollToSection(event,'contato')">CONTATO</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="overlay-menu" id="overlay-menu"></div>
+            </header>
+
+
+
+            <!-- Seção Principal -->
+            <main>
+                <section id="principal">
+                    <div class="central">
+                        
+                        <h1>                        
+                            SEU <span class="alternando-palavras"></span> COM<br>
+                            A GARANTIA DO<br>
+                            MELHOR CHOPP<br>
+                            DA REGIÃO!
+                        </h1>
+                        
+                        <p>     
+                            É rápido, prático e você não se preocupa com <br>
+                            nada. É só entrar em contato, fazer o seu pedido<br>
+                            e deixar o resto com a gente!
+                        </p>
+
+                        <button class="Btn-whats whatsapp">
+                            <div class="sign">
+                            <svg class="socialSvg whatsappSvg" viewBox="0 0 16 16">
+                                <path
+                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+                                ></path>
+                            </svg>
+                            </div>
+                        
+                            <div class="text">Whatsapp</div>
+                        </button>
+
+                    </div>
+                </section>
+                
+
+                <!-- Seção Produtos -->
+                <section id="produtos">
+                    <h2 class="nossos-produtos">Nossos produtos:</h2>
+                    <div class="pin-wrap">
+
+                        <div class="bloco">
+                            <h3 class="titulo-prod vinho-tinto" onclick="abrirModal('modal-tinto')">La Pioggia Vinho Tinto</h3>
+                            <img class="galeria" src="images/chopps/vinho-tinto.png" onclick="abrirModal('modal-tinto')" alt="Vinho Tinto"/>
+                        </div>
+                        
+                        <div class="bloco">
+                            <h3 class="titulo-prod golden" onclick="abrirModal('modal-golden')">Golden Sul Pilsen</h3>
+                            <img class="galeria" src="images/chopps/golden.png" onclick="abrirModal('modal-golden')" alt="Golden" />
+                        </div>
+                        
+                        <div class="bloco">
+                            <h3 class="titulo-prod ice" onclick="abrirModal('modal-ice')">La Pioggia Ice</h3>
+                            <img id="ice" class="galeria" src="images/chopps/ice.png" onclick="abrirModal('modal-ice')" alt="Ice"/>
+                        </div>
+
+                        <div class="bloco">
+                            <h3 class="titulo-prod morango" onclick="abrirModal('modal-morango')">La Pioggia Morango</h3>
+                            <img class="galeria" src="images/chopps/ice-morango.png" onclick="abrirModal('modal-morango')" alt="Ice Morango" />
+                        </div>
+                        
+                        <div class="bloco">
+                            <h3 class="titulo-prod pilsen" onclick="abrirModal('modal-pilsen')">La Pioggia Pilsen</h3>
+                            <img class="galeria" src="images/chopps/pilsen.png" onclick="abrirModal('modal-pilsen')" alt="Pilsen"/>
+                        </div>
+
+                        <div class="bloco">
+                            <h3 class="titulo-prod vinho-branco" onclick="abrirModal('modal-branco')">La Pioggia Vinho Branco</h3>
+                            <img  class="galeria" src="images/chopps/vinho-branco.png" onclick="abrirModal('modal-branco')" alt="Vinho Branco"/>
+                        </div>
+
+                        <div class="bloco">
+                            <h3 class="titulo-prod vosgeral" onclick="abrirModal('modal-vosgeral')">Vosgeral IPA </h3>
+                            <img class="galeria vosgeral" src="images/chopps/vosgeral.png" onclick="abrirModal('modal-vosgeral')" alt="Vosgeral"/>
+                        </div>
+
+                    </div>
+
+                    <div class="janela-modal" id="modal-golden">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/golden.png" alt="Copo de Chopp Pilsen">
+                            <div class="chopps-descricao">
+                                <h2 class="golden">PILSEN</h2>
+                                <h3>SPECIAL GOLDEN SUL</h3>
+                                <p>O Chopp Pilsen Golden Sul é uma verdadeira joia para os amantes de cerveja! Com sua coloração dourada e
+                                    espuma cremosa, ele se destaca pela leveza e refrescância. Seu sabor equilibrado, que combina notas de malte
+                                    e um toque sutil de lúpulo, proporciona uma experiência única a cada gole.</p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>4,8% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br> 09 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br> 36,2 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-golden')">X<div class="close">Fechar</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-morango">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/ice-morango.png" alt="Copo de Ice Morango">
+                            <div class="chopps-descricao">
+                                <h2 class="morango">ICE MORANGO</h2>
+                                <h3>LA PIOGGIA ICE MORANGO</h3>
+                                <p>O Ice Morango La Pioggia é a escolha perfeita para quem busca uma experiência 
+                                    doce e refrescante! Com seu sabor único de morango e um toque sutil de frescor, 
+                                    ele é ideal para momentos de descontração. Sua produção cuidadosa 
+                                    garante equilíbrio entre sabor e leveza, sendo irresistível em qualquer ocasião.</p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>4,8% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>09 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>36,2 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-morango')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-ice">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/ice.png" alt="Copo de Ice">
+                            <div class="chopps-descricao">
+                                <h2 class="ice">ICE</h2>
+                                <h3>LA PIOGGIA ICE</h3>
+                                <p>O chopp Ice La Pioggia é uma verdadeira experiência refrescante 
+                                    para os amantes de cerveja! Com sua temperatura ideal e sabor leve, 
+                                    ele se destaca por ser extremamente agradável, especialmente em dias quentes. 
+                                    A sua produção cuidadosa garante uma qualidade excepcional, 
+                                    com um equilíbrio perfeito entre amargor e doçura.</p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>4,8% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>06 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>38 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-ice')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-pilsen">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/pilsen.png" alt="Copo de Chopp Pilsen">
+                            <div class="chopps-descricao">
+                                <h2 class="pilsen">PILSEN</h2>
+                                <h3>LA PIOGGIA PILSEN</h3>
+                                <p>Com seu sabor leve e refrescante, o La Pioggia Pilsen 
+                                    é a escolha ideal para quem busca um chopp clássico e equilibrado. 
+                                    Seus aromas especiais remetem à tradição das melhores receitas, 
+                                    tornando-o perfeito para momentos de descontração, 
+                                    confraternizações e celebrações ao lado de familiares e amigos. 
+                                    Um verdadeiro convite ao prazer em cada gole.
+                                </p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>5,0% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>12 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>43 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-pilsen')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-branco">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/vinho-branco.png" alt="Copo de Vinho Brano">
+                            <div class="chopps-descricao">
+                                <h2 class="vinho-branco">VINHO BRANCO</h2>
+                                <h3>LA PIOGGIA VINHO BRANCO</h3>
+                                <p>Elegante e sofisticado, o La Pioggia Vinho Branco é a perfeita harmonia entre 
+                                    leveza e requinte. Seu sabor refinado e aroma envolvente proporcionam uma 
+                                    experiência sensorial única, agradando até os paladares mais exigentes. 
+                                    Seja para acompanhar um jantar especial ou brindar momentos inesquecíveis, 
+                                    este vinho branco é sempre a melhor escolha.
+                                </p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>4,0% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>06 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>38 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-branco')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-tinto">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/vinho-tinto.png" alt="Copo de Vinho Tinto">
+                            <div class="chopps-descricao">
+                                <h2 class="vinho-tinto">VINHO</h2>
+                                <h3>LA PIOGGIA VINHO TINTO</h3>
+                                <p>O chopp de Vinho Tinto La Pioggia é uma verdadeira experiência para os amantes de vinho! 
+                                    Com sua combinação única de sabor e refrescância, ele traz o melhor do vinho tinto em 
+                                    uma versão que é perfeita para compartilhar com amigos. Além disso, sua versatilidade 
+                                    permite que ele harmonize bem com diversos pratos, desde carnes grelhadas até queijos. </p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>4,8% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>16 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>54,6 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-tinto')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+
+                    <div class="janela-modal" id="modal-vosgeral">
+                        <div class="modal">
+                            <img class="chopps-imgs" src="images/chopps/vosgeral.png" alt="Copo de Chopp Vosgeral">
+                            <div class="chopps-descricao">
+                                <h2 class="vosgeral">IPA</h2>
+                                <h3>SPECIAL VOSGERAL IPA</h3>
+                                <p>Com um aroma marcante e inconfundível, o Special Vosgeral IPA é uma 
+                                    celebração dos lúpulos especiais. Seus sabores herbáceos e cítricos 
+                                    intensos destacam-se pela complexidade e refrescância, 
+                                    agradando os amantes de uma IPA autêntica. Com graus variados de 
+                                    amargor perfeitamente equilibrados, 
+                                    é a bebida ideal para quem aprecia uma experiência forte e sofisticada.
+                                </p>
+                                <br>
+                                <ul>
+                                    <li><strong>Álcool:</strong><span class="aumenta-letra"><br>6,2% ABV</span></li>
+                                    <li><strong>Amargor:</strong><span class="aumenta-letra"><br>55 IBU</span></li>
+                                    <li><strong>Calorias:</strong><span class="aumenta-letra"><br>62 kcal/100ml</span></li>
+                                </ul>
+                            </div>
+                            <button class="btn-modal" onclick="fecharModal('modal-vosgeral')">X<div class="close">Close</div></button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Seção Sobre -->
+                <section id="sobre">
+                    <div class="texto-container">
+                        <h4 id="subtitulo-sobre" class="bold">Sobre</h4>
+                        <strong><h1 class="sobre-title">CHOPP SUL ARAUCÁRIA</h1></strong>
+                        <p class="parag">
+                            Bem-vindo à nossa distribuidora de chopp, referência em Araucária e região! 
+                            Com 5 anos de experiência, nossa missão é levar qualidade, sabor e momentos inesquecíveis para todos os tipos de eventos. 
+                            Seja para uma celebração intimista, um casamento especial, ou um animado happy hour com os amigos, estamos aqui para garantir o melhor chopp, direto do barril para o seu copo.
+                            Somos apaixonados pelo que fazemos e nos dedicamos a selecionar os melhores fornecedores e estilos de chopp para agradar todos os paladares. 
+                            Além disso, oferecemos suporte personalizado, desde a escolha dos sabores até a instalação de equipamentos, garantindo uma experiência sem preocupações.
+                            Nosso compromisso é com a excelência, tanto na qualidade dos produtos quanto no atendimento ao cliente. Afinal, entendemos que cada evento é único, e nosso objetivo é torná-lo inesquecível.
+                        </p>
+                        <br>
+                        <div class="lado-a-lado">
+                            <p class="parag atencao">
+                                Escolha quem entende de chopp. <br>
+                                Escolha qualidade. <br>
+                                Escolha Chopp Sul!
+                            </p>
+                            <img id="instagram-sobre" class="icons-sobre instagram" src="images/icons/instagram-brown.png" alt="Instagram-Sobre">
+                            <img id="facebook-sobre" class="icons-sobre facebook" src="images/icons/facebook-brown.png" alt="Facebook-Sobre">
+                        </div>
+                    </div>
+                </section>
+                
+
+                <!-- Seção Contato -->
+                <section id="contato">
+                    <div id="div-contato">
+                        <h4 class="bold italic subtitulo-contato">Contato</h4>
+                        <h1 id="fale-conosco">Fale Conosco</h1>
+                    </div>
+                    <div id="sessao-contato">
+                        <div class="item-contato">
+                            <img id="whatsapp-contato" class="icons-contato whatsapp" src="images/icons/whatsapp-amarelo.png" alt="Whatsapp-Contato">
+                            <h3>WhatsApp</h3>
+                            <br>
+                            <h5 id="whatsapp" class="underline whatsapp texto-contato">Clique aqui</h5>
+                        </div>
+                        <div class="item-contato">
+                            <img id="email-contato" class="icons-contato email" src="images/icons/email-contato.png" alt="Email-Contato">
+                            <h3>Email</h3>
+                            <br>
+                            <h5 id="email" class="underline email texto-contato">chopparaucaria@gmail.com</h5>
+                        </div>
+                        <div class="item-contato">
+                            <img id="telefone-contato" class="icons-contato telefone" src="images/icons/telefone-contato.png" alt="Telefone-Contato">
+                            <h3>Telefone</h3>
+                            <br>
+                            <h5 id="telefone" class="underline telefone texto-contato">+55 (41) 99801-0067</h5>
+                        </div>
+                        <div class="item-contato">
+                            <img id="instagram-contato" class="icons-contato instagram" src="images/icons/instagram-amarelo.png" alt="Instagram-Contato">
+                            <h3>Instagram</h3>
+                            <br>
+                            <h5 id="arroba-instagram" class="underline instagram texto-contato">@chopparaucaria</h5>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Seção Calculadora -->
+                <section id="calculadora">
+                    <div id="calculadora-chopp">
+                        <h2>Calculadora de Chopp</h2>
+                        <h4>Não sabe a quantidade ideal de chopp Louvada para a sua celebração? 
+                            A gente te ajuda a calcular. 
+                            É só preencher os dados na calculadora.</h4>
+                        <div>
+                        <label for="num-pessoas">Número de pessoas:</label>
+                        <input class="entradas-calculadora" type="number" id="num-pessoas" min="1" value="1">
+                        </div>
+                        <div>
+                        <label for="duracao-evento">Duração do evento (horas):</label>
+                        <input class="entradas-calculadora" type="number" id="duracao-evento" min="1" value="1">
+                        </div>
+                        <div>
+                        <button id="calcular">Calcular</button>
+                        </div>
+                        <div id="resultado">
+                        <h3>Quantidade de chopp necessária:</h3>
+                        <p><span id="quantidade-litros">0.5</span> litros</p>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+            
+            <!-- Rodapé -->
+            <footer>
+                <div class="footer-container">
+                    <div class="footer-top">
+                        <div class="footer-logo">
+                            <img class="logo logo-footer" onclick="scrollToSection(event, 'principal')" src="images/logos/logo-yellow.png">
+                        </div>
+                        <div class="footer-social">
+                            <img class="icons-footer whatsapp" id="wpp-footer" src="images/icons/whatsapp-amarelo.png" alt="WhatsApp">
+                            <img class="icons-footer instagram"id="insta-footer" src="images/icons/instagram-amarelo.png" alt="Instagram">
+                            <img class="icons-footer facebook" id="face-footer" src="images/icons/facebook-amarelo.png" alt="Facebook">
+                        </div>
+                        <div class="footer-desenvolvedor">
+                            <img id="logo-melo" class="desenvolvedor" src="images/logos/logo-melo-amarela.png" alt="Desenvolvedor Eduardo Melo">
+                        </div>
+                    </div>
+                    <div class="footer-divider"></div>
+                    <div class="footer-bottom">
+                        <p>Desenvolvido por <span class="desenvolvedor">Eduardo Melo</span></p>
+                        <p>Chopp Sul Araucária 2025 © Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+        
+        
+        </div>
+    </body>
+</html>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Locomotive Scroll, Gsap e ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+<!-- Chamada do arquivo JavaScript -->
+<script src="js/script.js"></script>
+
+

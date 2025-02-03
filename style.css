@@ -1,0 +1,3036 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Rubik", serif;
+    transition: 0.3s ease-out;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    overscroll-behavior: none;
+    margin: 0;
+    padding: 0;
+  }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* MENU INÍCIO */
+header {
+    background: #000000; 
+    padding: 10px 0;
+    width: 100%;
+    position: sticky;
+}
+
+.btn-abrir-menu {
+    display: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+ }
+
+ .container.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+ }
+
+#logo img {
+    max-width: 170px; 
+    height: auto; /* Mantém a proporção da imagem */
+    transition: transform 1s ease;
+}
+
+ #logo:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#itens-menu {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; /* Espaçamento entre os links */
+    position: relative;
+}
+
+#itens-menu a {
+    color: #F6BD32;
+    margin: 0 15px;
+    font-size: 17px;
+    text-decoration: none;
+    font-weight: 700;
+    position: relative; /* Adiciona posição relativa para o efeito */
+    padding: 5px 10px; /* Defina um padding base para manter o tamanho constante */
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+ #itens-menu a:hover {
+    padding: 5px 15px; /* Aumenta o padding, mas ainda mantém o controle do tamanho */
+    transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+}
+
+.checkbox-apple {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    margin: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .checkbox-apple label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 25px;
+    border-radius: 50px;
+    background: #F6BD32;
+    cursor: pointer;
+    transition: all 1s ease;
+  }
+
+  .checkbox-apple:hover {
+    transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+  }
+  
+  .checkbox-apple label:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: #ffffffe8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .checkbox-apple input[type="checkbox"]:checked + label {
+    background: #000000;
+  }
+  
+  .checkbox-apple input[type="checkbox"]:checked + label:after {
+    transform: translateX(25px);
+  }
+  
+  .checkbox-apple label:hover:after {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .yep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 25px;
+  }
+  
+/* ------------------ MENU MOBILE ------------------*/
+
+.menu-mobile {
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    position: fixed;
+    top:0;
+    right: 0;
+    z-index: 9999;
+    width: 0%;
+    overflow: hidden;
+    transition: .2s;
+}
+
+/* Centraliza o texto na página */
+.central {
+    font-family: "Rubik", serif;
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Organiza os itens na vertical */
+    justify-content: center;
+    align-items: flex-start;
+    height: 70vh; 
+    background-image: url('images/wallpapers/yellowbackground.png');
+    background-color: #000000;
+    background-size: cover; /* A imagem vai cobrir toda a tela */
+    background-position: center; /* A imagem ficará centralizada */
+    background-attachment:scroll; /* A imagem ficará fixa enquanto o usuário rola a página */
+    padding-left: 9%;
+}
+
+.central h1 {
+    text-align: left;
+    font-size: 60px;
+    width: 50%; 
+    color:#000000;
+    font-style: italic;
+    margin-bottom: 10px; 
+    font-weight: 600;
+}
+
+.central p {
+    width: 60%; 
+    font-size: 22px;
+    color: #000000;
+    text-align: left; 
+    margin-top: 0; /* Remove qualquer margem superior */
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.alternando-palavras {
+    font-weight: 700;
+    font-size: 63px;
+} 
+
+.Btn-whats {
+    display: none;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #000000;
+  }
+  
+  .sign {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 25px;
+  }
+  
+  .sign svg path {
+    fill: white;
+  }
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+  }
+  
+  .Btn-whats:hover {
+    width: 150px;
+    border-radius: 40px;
+    transition-duration: 0.3s;
+  }
+  
+  .Btn-whats:hover .sign {
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 10px;
+  }
+  
+  .Btn-whats:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: 0.3s;
+    padding-right: 10px;
+  }
+  .Btn-whats:active {
+    transform: translate(2px, 2px);
+  }
+
+/* FINAL CENTRAL */
+
+/* INÍCIO PRODUTOS */
+
+#produtos {
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/wallpapers/black.png');
+    left: 0;
+    display: flex;
+    letter-spacing: 1px;
+}
+
+.pin-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 2vw;
+    padding-left: 2vw;
+    margin-bottom: 0;
+}
+
+.pin-wrap>* {
+    flex: 0 0 auto; /* Evita que os itens cresçam ou encolham */
+    margin: 0; /* Remove margens que causam espaços extras */
+}
+
+/* Título fixo */
+.nossos-produtos {
+    display: none;
+    position: absolute;
+    top: 12%;
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%);
+    font-size: 48px; /* Tamanho maior para destaque */
+    color: #F6AA01;
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+.bloco{
+    padding: 0 8.5vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo-prod{
+    padding-bottom: 1vw;
+    transition: all 0.3s ease;
+}
+
+.morango{
+    color:#dc5667;
+}
+
+.ice{
+    color: #407a88;
+}
+
+.vinho-branco{
+    color: #b6cea2;
+}
+
+.vinho-tinto{
+    color: #cc2c29;
+}
+
+.pilsen{
+    color: #d2c9bf;
+}
+
+.golden{
+    color: #ffc300;
+}
+
+.vosgeral{
+    color: #4f7374;
+}
+.descricao-prod{
+    padding-top: 1vw;
+}
+
+.galeria {
+    height: 25vw;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+.galeria:hover {
+    transform: scale(1.05); /* Aumenta o tamanho visual sem afetar o layout */
+    cursor: pointer;
+}
+
+.titulo-prod:hover {
+    transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    cursor: pointer;
+}
+
+.janela-modal {
+    display: none; /* Ocultar por padrão */
+    position: fixed; /* Para fixar o modal sobre a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(51, 51, 51, 0.9);
+    align-items: center;
+    justify-content: center;
+    z-index: 99; /* Garantir que fique acima de outros elementos */
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 50vh;
+    display: flex;
+    width: 50vw; /* Ajuste conforme necessário */
+    padding: 20px;
+    position: relative;
+    z-index: 99; /* Garante que fique na frente da barra preta */
+    border-radius: 40px;
+    animation: abrirmodal 0.7s;
+}
+
+.blurred {
+    filter: blur(5px); /* Aplica o efeito de desfoque */
+    pointer-events: none; /* Impede interações no conteúdo de fundo */
+}
+
+.chopps-imgs {
+    width: 350px;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    position: absolute; /* Permite ajustar a posição da imagem */
+    top: -70px; /* Move a imagem para cima */
+    left: -100px; /* Move a imagem para fora da lateral */
+    z-index: 100; /* Garante que a imagem fique na frente */
+}
+
+.chopps-descricao {
+    padding: 30px 0 50px 250px;
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 43vw;
+}
+
+.chopps-descricao h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 900;
+}
+
+.chopps-descricao h3 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.chopps-descricao ul {
+    list-style: none;
+    padding-top: 0;
+    display: flex;
+}
+
+.chopps-descricao li {
+    margin-bottom: 5px;
+    padding-right: 60px;
+    font-size: 20px;
+}
+
+.aumenta-letra {
+    font-size: 24px;
+    color: #FF8F00;
+    font-weight: 800;
+}
+
+/* From Uiverse.io by javierBarroso */ 
+.btn-modal {
+    position: relative;
+    top: -10px;
+    right: -40px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: rgba(180, 83, 107, 0.253);
+    border-radius: 50%;
+    color: white;
+    transition: background 0.5s;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease; /* Para uma transição suave */
+  }
+  
+  .close {
+    position: absolute;
+    display: flex;
+    padding: .8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    top: -70%;
+    left: 50%;
+    width: 3em;
+    height: 1.2em;
+    font-size: 12px;
+    background-color: rgb(19, 22, 24);
+    color: rgb(187, 229, 236);
+    border: none;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+  }
+  
+  .btn-modal:hover {
+    background-color: rgb(211, 21, 21);
+    transform: scale(1.1); 
+  }
+  
+  .btn-modal:active {
+    background-color: rgb(130, 0, 0);
+  }
+  
+  .btn-modal:hover > .close {
+    animation: close 0.2s forwards 0.25s;
+  }
+  
+  @keyframes abrirmodal {
+    from {
+        opacity: 0;
+        transform: translate3d(0,-50px,0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+
+  @keyframes close {
+    100% {
+      opacity: 1;
+    }
+  }
+  
+
+/* FINAL PRODUTOS */
+
+/* INÍCIO SOBRE */
+
+#sobre {
+    font-family: "Rubik", serif;
+    background-image: url('images/wallpapers/yellow.png');
+    background-size: cover; /* A imagem vai cobrir toda a tela */
+    background-position: center; /* A imagem ficará centralizada */
+    background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    height: 670px;
+    color: #553900;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-container{
+    width: 100%;
+    height: 670px;
+    max-width: 550px;
+    margin: auto;
+    padding-top: 92px;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    position:sticky;
+}
+
+#subtitulo-sobre{
+    color:#000000;
+}
+
+.sobre-title {
+    font-weight: 800;
+    font-style: italic; 
+    font-size: 41px; 
+    padding-bottom: 2%;
+}
+
+.parag{
+    font-style: italic;
+    line-height: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight:500;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.bold{
+    font-weight: bolder;
+}
+
+.atencao {
+    font-weight: 900;
+    margin: 0; /* Remove o margin auto */
+}
+
+.lado-a-lado {
+    display: flex; /* Alinha os itens na horizontal */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.icons-sobre {
+    width: 30px; /* Tamanho do ícone */
+    margin-top: 35px;
+    height: auto;
+}
+#instagram-sobre {
+    margin-left: 240px;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+#facebook-sobre {
+    margin-left:10px;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.icons-sobre:hover{
+    transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    cursor: pointer;
+}
+
+/* FINAL SOBRE */
+
+/* INÍCIO CONTATO */
+
+#contato {
+    font-family: "Rubik", serif;
+    height: 660px;
+    padding: 50px 20px;
+    background-image: url('images/wallpapers/contato-preto.png');
+    background-size: cover; /* A imagem vai cobrir toda a tela */
+    background-position: center; /* A imagem ficará centralizada */
+    background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    color:#F6AA01;
+}
+
+#div-contato {
+    justify-content: center;
+    text-align: center;
+    margin-top: 45px;
+    margin-left: 439px;
+}
+
+.subtitulo-contato {
+    color:#808080;
+}
+
+#fale-conosco {
+    font-size:38px;
+    font-weight: 700;
+    padding-top:5px;
+}
+
+#sessao-contato {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Espaço entre os itens */
+    margin-top: 151px;
+    margin-left: 436px;
+}
+
+.item-contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icons-contato {
+    width: 50px;
+    margin-bottom: 10px; /* Espaço entre o ícone e o texto */
+    padding-bottom: 12px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.whatsapp:hover {
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+.email:hover {
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+.telefone:hover {
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+.instagram:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* FINAL CONTATO */
+/* Seção completa */
+#calculadora {
+    font-family: "Rubik", serif;
+    padding: 70px 20px;
+    height: 70vh;
+    background: url('images/wallpapers/yellow.png'); 
+    background-size: cover; /* Faz a imagem cobrir toda a seção */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* Torna a imagem fixa */
+    display: flex; /* Para centralizar conteúdo */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Calculadora estilizada */
+#calculadora-chopp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    margin:20px;
+}
+
+  #calculadora-chopp h2 {
+    font-size: 40px;
+    color: #000000;
+    padding-bottom: 15px;
+    font-style: italic;
+    font-weight: 700;
+  }
+  #calculadora-chopp h4 {
+    font-size: 25px;
+    color: #000000;
+    font-weight: 400;
+  }
+
+#calculadora-chopp label {
+    font-weight: bold;
+    color: #000000;
+    display: block;
+    margin: 8px 0;
+    text-align: start;
+}
+
+  .entradas-calculadora {
+    width: 700px;
+    text-align: center;
+    border: 2px solid #855b00;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 20px;
+    background-color: #fff8e6; /* Fundo com tom mais suave */
+    color: #855b00; /* Cor de texto em harmonia com o tema */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil profundidade */
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+.entradas-calculadora:focus {
+    outline: none;
+    border-color: #ffcc00; /* Cor de destaque ao focar */
+    background-color: #fff3d1; /* Fundo mais claro ao focar */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.7); /* Efeito de brilho */
+}
+.entradas-calculadora:hover {
+    border-color: #ffcc00; /* Cor mais chamativa ao passar o mouse */
+    background-color: #fff0c2; /* Fundo mais destacado ao hover */
+}
+
+  #calcular {
+    margin: 10px;
+    margin-bottom: 30px;
+    background-color: #3d0303;
+    width: 200px;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 700;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  #calcular:hover {
+    background-color: #8d0202;
+    transform: scale(1.1);
+  }
+  #resultado {
+    width: 400px;
+    background-color: #fff8e6;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center; /* Centraliza o conteúdo */
+}
+  #resultado h3 {
+    font-size: 20px;
+    color: #000000;
+  }
+  #resultado p {
+    font-size: 30px;
+    font-weight: 800;
+    color: #855b00;
+  }
+
+
+/* INÍCIO RODAPÉ */
+
+footer {
+    position: sticky;
+    width: 100%;
+    background-color: #000000;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin:0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-footer {
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between; /* Espaço entre a logo e as redes sociais */
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-social img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+#logo-melo {
+    width: 120px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social img:hover {
+    transform: scale(1.2);
+}
+
+.footer-divider {
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+    color: #bdbdbd;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
+
+.desenvolvedor {
+    font-weight: 800;
+    color: #dfdfdf;
+}
+
+.desenvolvedor:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.logo-footer:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.icons-footer:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+
+/* FINAL CONTATO */
+
+/* INÍCIO CELULAR */
+
+@media (max-width: 449px){
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        justify-content: space-between;
+        padding: 20px;
+    }    
+
+    .btn-abrir-menu {
+        display: block;
+    }
+
+    .btn-abrir-menu i {
+        color: #F6BD32;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    #itens-menu {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #logo img {
+        width: 120px;
+    }
+    
+    .menu-mobile {
+        background-color: rgb(0, 0, 0);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        right: 0;
+        z-index: 9999;
+        width: 0%;
+        overflow: hidden;
+        transition: .2s;
+    }
+    
+    .menu-mobile.abrir-menu {
+        width: 70%;
+    }
+
+    .menu-mobile.abrir-menu ~ .overlay-menu {
+        display: block;
+    }
+
+    .menu-mobile.abrir-menu ~ .central {
+        pointer-events: none;
+    }
+    
+    .menu-mobile .btn-fechar-menu {
+        padding: 20px 5%;
+    }
+    
+    .menu-mobile .btn-fechar-menu i {
+        color:#F6BD32;
+        font-size: 30px;
+    }
+    
+    .menu-mobile nav a {
+        text-align: right;
+        color:#F6BD32;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 20px 10%;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .menu-mobile nav a:hover {
+        transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    }
+    
+    .overlay-menu {
+        background-color: #000000c2;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+        display: none;
+    }
+
+    #ambiente {
+        display: flex;
+        align-items: center;
+    }
+
+    .central {
+        background-size: cover; /* A imagem vai cobrir toda a tela */
+        background-position: 42%; /* A imagem ficará centralizada */
+        padding: 5%;
+    }
+
+    .central h1 {
+        font-size: 26px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; 
+    }
+
+    .central p {
+        font-size: 14px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 28px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    #produtos {
+        margin: 0;
+    }
+    
+    .pin-wrap {
+        height: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 230vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 70vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 16px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 42vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 100px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 110px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 10px 0 10px 55px;
+        line-height: 1.6;
+        max-width: 66vw;
+        font-size: 10px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 14px;
+        margin-bottom: 0px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 11px;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        padding-top: 5px;
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 10px;
+    }
+    
+    .aumenta-letra {
+        font-size: 10px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+      }
+
+    .texto-container{
+        width: 100%;
+        padding-top: 92px;
+        font-style: italic;
+        display: flex;
+        flex-direction: column;
+        padding: 5%;
+    }
+    
+    #sobre{
+        height: 600px;
+        padding: 20px 0 20px 10px;
+    }
+    
+    .sobre-title {
+        font-size: 22px; /* Tamanho da fonte */
+        padding-bottom: 4%;
+    }
+
+    #subtitulo-sobre {
+        font-size:  15px;
+    }
+
+    .parag{
+        line-height: 1.3rem;
+        font-size: 13px;
+        padding-right: 10px;
+    }
+    
+    .lado-a-lado {
+        margin:0;
+    }
+
+    #instagram-sobre{
+        margin-left: 90px;
+    }
+
+    .icons-sobre {
+        width: 20px; /* Tamanho do ícone */
+        margin-top: 35px;
+    }
+
+    /* SESSAO CONTATO */
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:600%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: scroll; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 20px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+
+    #calculadora {
+        padding: 70px 20px;
+        height: 90vh;
+    }
+
+    #calculadora-chopp {
+        width: 100%;
+        max-width: 320px;
+        margin:250px;
+    }
+    
+    #calculadora-chopp h2 {
+        font-size: 28px;
+    }
+    #calculadora-chopp h4 {
+        font-size: 16px;
+    }
+    
+    #calculadora-chopp label {
+        margin: 8px 0;
+    }
+    
+      .entradas-calculadora {
+        width: 320px;
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    #resultado {
+        width: 320px;
+    }
+      #resultado h3 {
+        font-size: 15px;
+      }
+      #resultado p {
+        font-size: 25px;
+      }
+
+    .logo-footer {
+        width: 100px;
+    }
+
+    #logo-melo {
+        width: 80px;
+    }
+    
+}
+
+@media (min-width:450px) and (max-width: 600px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .btn-abrir-menu {
+        display: block;
+    }
+
+    .btn-abrir-menu i {
+        color: #F6BD32;
+        font-size: 50px;
+        cursor: pointer;
+    }
+    
+    #itens-menu {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #logo img {
+        width: 150px;
+    }
+    
+    .menu-mobile {
+        background-color: rgb(0, 0, 0);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        right: 0;
+        z-index: 9999;
+        width: 0%;
+        overflow: hidden;
+        transition: .2s;
+    }
+    
+    .menu-mobile.abrir-menu {
+        width: 70%;
+    }
+
+    .menu-mobile.abrir-menu ~ .overlay-menu {
+        display: block;
+    }
+
+    .menu-mobile.abrir-menu ~ .central {
+        pointer-events: none;
+    }
+    
+    .menu-mobile .btn-fechar-menu {
+        padding: 20px 5%;
+    }
+    
+    .menu-mobile .btn-fechar-menu i {
+        color:#F6BD32;
+        font-size: 30px;
+    }
+    
+    .menu-mobile nav a {
+        text-align: right;
+        color:#F6BD32;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 20px 10%;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .menu-mobile nav a:hover {
+        transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    }
+    
+    .overlay-menu {
+        background-color: #000000c2;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+        display: none;
+    }
+
+    #ambiente {
+        display: flex;
+        align-items: right;
+    }
+
+    .central {
+        background-position: 42%; 
+        padding: 5%;
+    }
+
+    .central h1 {
+        font-size: 32px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
+
+    .central p {
+        font-size: 15px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 33px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 19vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 150vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 60vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 16px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 40vh;
+        width: 80vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 100px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 100px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 20px 0 0 70px;
+        line-height: 1.6;
+        max-width: 66vw;
+        font-size: 11px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 16px;
+        margin-bottom: 0px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 12px;
+    }
+    
+    .aumenta-letra {
+        font-size: 12px;
+    }
+
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 0px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+      }
+      .texto-container{
+        padding: 5%;
+    }
+    
+    #sobre{
+        height: 600px;
+        padding: 30px 0 20px 10px;
+    }
+    
+    .sobre-title {
+        font-size: 22px; /* Tamanho da fonte */
+        padding-bottom: 4%;
+    }
+
+    #subtitulo-sobre {
+        font-size:  15px;
+    }
+
+    .parag{
+        line-height: 1.3rem;
+        font-size: 14px;
+        padding-right: 10px;
+    }
+    
+    .lado-a-lado {
+        margin:0;
+    }
+
+    #instagram-sobre{
+        margin-left: 90px;
+    }
+
+    .icons-sobre {
+        width: 20px; /* Tamanho do ícone */
+        margin-top: 35px;
+    }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:500%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 20px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+    #calculadora {
+        padding: 70px 20px;
+        height: 90vh;
+    }
+
+    #calculadora-chopp {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    #calculadora-chopp h2 {
+        font-size: 28px;
+    }
+    #calculadora-chopp h4 {
+        font-size: 16px;
+    }
+    
+    #calculadora-chopp label {
+        margin: 8px 0;
+    }
+    
+      .entradas-calculadora {
+        width: 320px;
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    #resultado {
+        width: 320px;
+    }
+      #resultado h3 {
+        font-size: 15px;
+      }
+      #resultado p {
+        font-size: 25px;
+      }
+
+    .logo-footer {
+        width: 100px;
+    }
+
+    #logo-melo {
+        width: 80px;
+    }
+}
+
+@media (max-height: 600px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+    .nossos-produtos{
+        font-size: 35px;
+    }
+
+    .pin-wrap {
+        height: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 230vw;
+        margin-bottom: 0;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 50vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 16px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 56vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 100px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 90px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 0 0 0 55px;
+        line-height: 1.6;
+        max-width: 66vw;
+        font-size: 10px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 14px;
+        margin-bottom: 0px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 11px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        padding-top: 0px;
+        margin-bottom: 0px;
+        padding-right: 20px;
+        font-size: 10px;
+    }
+    
+    .aumenta-letra {
+        font-size: 10px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+      }
+      
+}
+
+@media (min-height: 601px) and (max-height: 850px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+    .nossos-produtos{
+        font-size: 35px;
+    }
+
+    .pin-wrap {
+        height: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 230vw;
+        margin-bottom: 0;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 65vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 16px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 52vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 100px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 90px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 0 0 0 55px;
+        line-height: 1.6;
+        max-width: 66vw;
+        font-size: 10px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 14px;
+        margin-bottom: 0px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 11px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        padding-top: 0px;
+        margin-bottom: 0px;
+        padding-right: 20px;
+        font-size: 10px;
+    }
+    
+    .aumenta-letra {
+        font-size: 10px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+      }
+      
+}
+
+@media (min-width:601px) and (max-width:668px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .btn-abrir-menu {
+        display: block;
+    }
+
+    .btn-abrir-menu i {
+        color: #F6BD32;
+        font-size: 50px;
+        cursor: pointer;
+    }
+    
+    #itens-menu {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #logo img {
+        width: 150px;
+    }
+    
+    .menu-mobile {
+        background-color: rgb(0, 0, 0);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        right: 0;
+        z-index: 9999;
+        width: 0%;
+        overflow: hidden;
+        transition: .2s;
+    }
+    
+    .menu-mobile.abrir-menu {
+        width: 70%;
+    }
+
+    .menu-mobile.abrir-menu ~ .overlay-menu {
+        display: block;
+    }
+
+    .menu-mobile.abrir-menu ~ .central {
+        pointer-events: none;
+    }
+    
+    .menu-mobile .btn-fechar-menu {
+        padding: 20px 5%;
+    }
+    
+    .menu-mobile .btn-fechar-menu i {
+        color:#F6BD32;
+        font-size: 30px;
+    }
+    
+    .menu-mobile nav a {
+        text-align: right;
+        color:#F6BD32;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 20px 10%;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .menu-mobile nav a:hover {
+        transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    }
+    
+    .overlay-menu {
+        background-color: #000000c2;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+        display: none;
+    }
+
+    #ambiente {
+        display: flex;
+        align-items: right;
+    }
+
+    .central {
+        padding: 5%;
+        background-position: 42%; /* A imagem ficará centralizada */
+    }
+
+    .central h1 {
+        font-size: 37px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; /* Melhora o espaçamento entre linhas */
+    }
+
+    .central p {
+        font-size: 16px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 38px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15vw; /* Espaçamento entre os itens */
+        margin-left: 18vw; /* Espaçamento inicial */
+        padding-right: 200vw;
+        
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 50vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 40vh;
+        width: 80vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 120px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 90px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 28px 0 0 90px;
+        line-height: 1.6;
+        max-width: 70vw;
+        font-size: 12px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 16px;
+        margin-bottom: 0px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 13px;
+    }
+    
+    .aumenta-letra {
+        font-size: 12px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 0px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:400%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 20px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+
+    #calculadora-chopp {
+        width: 100%;
+        max-width: 470px;
+    }
+    
+    #calculadora-chopp h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    #calculadora-chopp h4 {
+        font-size: 20px;
+
+    }
+    
+    #calculadora-chopp label {
+        margin: 8px 0;
+    }
+    
+      .entradas-calculadora {
+        width: 470px;
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width:669px) and (max-width:768px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .btn-abrir-menu {
+        display: block;
+    }
+
+    .btn-abrir-menu i {
+        color: #F6BD32;
+        font-size: 50px;
+        cursor: pointer;
+    }
+    
+    #itens-menu {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #logo img {
+        width: 150px;
+    }
+    
+    .menu-mobile {
+        background-color: rgb(0, 0, 0);
+        height: 100vh;
+        position: fixed;
+        top:0;
+        right: 0;
+        z-index: 9999;
+        width: 0%;
+        overflow: hidden;
+        transition: .2s;
+    }
+    
+    .menu-mobile.abrir-menu {
+        width: 70%;
+    }
+
+    .menu-mobile.abrir-menu ~ .overlay-menu {
+        display: block;
+    }
+
+    .menu-mobile.abrir-menu ~ .central {
+        pointer-events: none;
+    }
+    
+    .menu-mobile .btn-fechar-menu {
+        padding: 20px 5%;
+    }
+    
+    .menu-mobile .btn-fechar-menu i {
+        color:#F6BD32;
+        font-size: 30px;
+    }
+    
+    .menu-mobile nav a {
+        text-align: right;
+        color:#F6BD32;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 20px 10%;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    .menu-mobile nav a:hover {
+        transform: scale(1.1); /* Aumenta o tamanho visual sem afetar o layout */
+    }
+    
+    .overlay-menu {
+        background-color: #000000c2;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+        display: none;
+    }
+
+    #ambiente {
+        display: flex;
+        align-items: right;
+    }
+
+    .central {
+        align-items: center; /* Centraliza os itens no meio */
+        text-align: left; /* Centraliza o texto para telas pequenas */
+        background-attachment: scroll; /* Faz o fundo rolar junto com o conteúdo */
+        background-position: center; /* A imagem ficará centralizada */
+        padding: 5%;
+    }
+
+    .central h1 {
+        font-size: 37px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; /* Melhora o espaçamento entre linhas */
+    }
+
+    .central p {
+        font-size: 16px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 38px; /* Ajusta o tamanho do texto sublinhado */
+    }
+    
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 220vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 50vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 40vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 120px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 90px; /* Move a imagem para cima */
+        left: -40px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 28px 0 0 90px;
+        line-height: 1.6;
+        max-width: 72vw;
+        font-size: 12px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 17px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 13px;
+    }
+    
+    .aumenta-letra {
+        font-size: 16px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 0px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:400%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 20px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+    
+    #calculadora-chopp {
+        width: 100%;
+        max-width: 470px;
+    }
+    
+    #calculadora-chopp h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    #calculadora-chopp h4 {
+        font-size: 20px;
+
+    }
+    
+    #calculadora-chopp label {
+        margin: 8px 0;
+    }
+    
+      .entradas-calculadora {
+        width: 470px;
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+}
+
+@media (min-width:768px) and (max-width:900px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        width: 100%;
+        display: flex;
+        align-items: center; /* Centraliza os elementos verticalmente */
+        justify-content: space-between; /* Espaça os itens */
+        flex-wrap: nowrap; /* Impede que os itens quebrem linha */
+        overflow-x: auto; /* Permite rolar horizontalmente se necessário */
+        gap: 10px; /* Espaçamento entre os links */
+    }
+
+    #logo img {
+        max-width: 130px; /* Reduz tamanho do logo no celular */
+        height: auto;
+        margin-left: 30px;
+        margin-right: 20px;
+    }
+
+    #itens-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        flex-grow: 1; /* Ocupa o espaço restante */
+        text-align: center;
+    }
+    #ambiente img {
+        max-width: 35px; 
+        height: auto;
+        margin-left: 6px; /* Espaço ao lado do ícone */
+        margin-right: 30px;
+    }
+
+    .central {
+        background-position: 42%; /* A imagem ficará centralizada */
+        padding: 7%;
+    }
+
+    .central h1 {
+        font-size: 40px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; /* Melhora o espaçamento entre linhas */
+    }
+
+    .central p {
+        font-size: 20px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 43px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 114vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 40vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 40vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 150px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 60px; /* Move a imagem para cima */
+        left: -60px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 28px 0 0 90px;
+        line-height: 1.6;
+        max-width: 72vw;
+        font-size: 14px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 14px;
+    }
+    
+    .aumenta-letra {
+        font-size: 18px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 0px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:300%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 20px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+}
+
+@media (min-width:901px) and (max-width:1086px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        width: 100%;
+        display: flex;
+        align-items: center; /* Centraliza os elementos verticalmente */
+        justify-content: space-between; /* Espaça os itens */
+        flex-wrap: nowrap; /* Impede que os itens quebrem linha */
+        overflow-x: auto; /* Permite rolar horizontalmente se necessário */
+        gap: 10px; /* Espaçamento entre os links */
+    }
+
+    #logo img {
+        max-width: 130px; /* Reduz tamanho do logo no celular */
+        height: auto;
+        margin-left: 30px;
+        margin-right: 20px;
+    }
+
+    #itens-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        flex-grow: 1; /* Ocupa o espaço restante */
+        text-align: center;
+    }
+    #ambiente img {
+        max-width: 35px; 
+        height: auto;
+        margin-left: 6px; /* Espaço ao lado do ícone */
+        margin-right: 30px;
+    }
+
+    .central {
+        align-items: center; /* Centraliza os itens no meio */
+        text-align: left; /* Centraliza o texto para telas pequenas */
+        background-attachment: scroll; /* Faz o fundo rolar junto com o conteúdo */
+        background-position: center; /* A imagem ficará centralizada */
+        padding: 7%;
+    }
+
+    .central h1 {
+        font-size: 50px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; /* Melhora o espaçamento entre linhas */
+    }
+
+    .central p {
+        font-size: 24px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 50px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 250vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 40vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 50vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 180px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 80px; /* Move a imagem para cima */
+        left: -60px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 60px 0 0 120px;
+        line-height: 1.6;
+        max-width: 72vw;
+        font-size: 14px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 15px;
+    }
+    
+    .aumenta-letra {
+        font-size: 18px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: -20px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:300%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:50px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        flex-direction: column; /* Organiza os ícones em coluna */
+        align-items: flex-end; /* Alinha os ícones à direita */
+        margin: 65px 60px 0px 0px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+    .item-contato h3, 
+    .item-contato h5 {
+        display: none;
+    }
+}
+
+@media (min-width:1086px) and (max-width:1300px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        width: 100%;
+        display: flex;
+        align-items: center; /* Centraliza os elementos verticalmente */
+        justify-content: space-between; /* Espaça os itens */
+        flex-wrap: nowrap; /* Impede que os itens quebrem linha */
+        overflow-x: auto; /* Permite rolar horizontalmente se necessário */
+        gap: 10px; /* Espaçamento entre os links */
+    }
+
+    #logo img {
+        max-width: 130px; /* Reduz tamanho do logo no celular */
+        height: auto;
+        margin-left: 30px;
+        margin-right: 20px;
+    }
+
+    #itens-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        flex-grow: 1; /* Ocupa o espaço restante */
+        text-align: center;
+    }
+    #ambiente img {
+        max-width: 35px; 
+        height: auto;
+        margin-left: 6px; /* Espaço ao lado do ícone */
+        margin-right: 30px;
+    }
+
+    .central {
+        align-items: center; /* Centraliza os itens no meio */
+        text-align: left; /* Centraliza o texto para telas pequenas */
+        background-attachment: scroll; /* Faz o fundo rolar junto com o conteúdo */
+        background-position: center; /* A imagem ficará centralizada */
+        padding: 7%;
+    }
+
+    .central h1 {
+        font-size: 50px; /* Reduz o tamanho do texto para telas pequenas */
+        width: 100%; /* Ocupa toda a largura disponível */
+        line-height: 1.2; /* Melhora o espaçamento entre linhas */
+    }
+
+    .central p {
+        font-size: 24px; /* Reduz o tamanho do parágrafo */
+        width: 100%; /* Ajusta a largura para telas pequenas */
+    }
+
+    .alternando-palavras {
+        font-size: 50px; /* Ajusta o tamanho do texto sublinhado */
+    }
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10vw; /* Espaçamento entre os itens */
+        margin-left: 17vw; /* Espaçamento inicial */
+        padding-right: 170vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 40vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 50vh;
+        width: 82vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 200px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 50px; /* Move a imagem para cima */
+        left: -60px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 60px 0 0 150px;
+        line-height: 1.6;
+        max-width: 72vw;
+        font-size: 18px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 18px;
+    }
+    
+    .aumenta-letra {
+        font-size: 20px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: -40px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:200%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        margin: -px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+    
+    /* Oculta os textos (h3 e h5) para essa resolução */
+}
+
+
+@media (min-width:1301px) and (max-width:1401px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+
+    .container.menu {
+        width: 100%;
+        display: flex;
+        align-items: center; /* Centraliza os elementos verticalmente */
+        justify-content: space-between; /* Espaça os itens */
+        flex-wrap: nowrap; /* Impede que os itens quebrem linha */
+        overflow-x: auto; /* Permite rolar horizontalmente se necessário */
+        gap: 10px; /* Espaçamento entre os links */
+    }
+
+    #logo img {
+        max-width: 130px; /* Reduz tamanho do logo no celular */
+        height: auto;
+        margin-left: 30px;
+        margin-right: 20px;
+    }
+
+    #itens-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap; /* Impede quebra de linha */
+        flex-grow: 1; /* Ocupa o espaço restante */
+        text-align: center;
+    }
+    #ambiente img {
+        max-width: 35px; 
+        height: auto;
+        margin-left: 6px; /* Espaço ao lado do ícone */
+        margin-right: 30px;
+    }
+
+    .central h1 {
+        font-size: 55px;
+        width: 60%; /* Limita a largura do texto */
+
+    }
+    
+    .alternando-palavras {
+        font-size: 55px;
+    } 
+
+    .pin-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 30vw; /* Espaçamento inicial */
+        padding-right: 140vw;
+    }
+    
+    .galeria {
+        max-width: 100%; /* Ajusta o tamanho das imagens para telas pequenas */
+        height: 25vw; /* Mantém a proporção da imagem */
+    }
+
+    .titulo-prod {
+        font-size: 18px; /* Ajusta o tamanho do título no celular */
+    }
+
+    .modal {
+        height: 50vh;
+        width: 78vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 200px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 50px; /* Move a imagem para cima */
+        left: -60px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 60px 0 0 150px;
+        line-height: 1.6;
+        max-width: 72vw;
+        font-size: 18px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 18px;
+    }
+    
+    .aumenta-letra {
+        font-size: 20px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+
+    #contato {
+        height: 660px;
+        padding: 50px 20px;
+        background-size:200%; /* A imagem vai cobrir toda a tela */
+        background-position:40%; /* A imagem ficará centralizada */
+        background-attachment: fixed; /* A imagem ficará fixa enquanto o usuário rola a página */
+    }
+    
+    #div-contato {
+        justify-content: center;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 40px;
+    }
+    
+    #fale-conosco {
+        font-size:30px;
+        font-weight: 700;
+        padding-top:5px;
+    }
+
+    #sessao-contato {
+        display: flex;
+        margin: -px; /* Ajusta o espaço ao redor da seção */
+        gap: 20px; /* Espaço entre os ícones */
+    }
+    
+    .item-contato {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Organiza o conteúdo de cada item em coluna */
+    }
+    
+    .icons-contato {
+        width: 50px; /* Tamanho do ícone ajustado */
+        margin: 0; /* Remove margens extras */
+    }
+}
+
+/* PÁGINA PRODUTOS */
+@media (min-width: 1402px) and (max-width:1600px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden; /* Impede scroll lateral indesejado */
+    }
+    .container {
+        max-width: 100%;
+    }
+    .central h1 {
+        font-size: 55px;
+        width: 60%; /* Limita a largura do texto */
+
+    }
+    
+    .alternando-palavras {
+        font-size: 55px;
+    } 
+
+    .modal {
+        height: 50vh;
+        width: 70vw; /* Ajuste conforme necessário */
+        padding: 20px;
+    }
+    
+    .chopps-imgs {
+        width: 200px;
+        position: absolute; /* Permite ajustar a posição da imagem */
+        top: 50px; /* Move a imagem para cima */
+        left: -60px; /* Move a imagem para fora da lateral */
+    }
+    
+    .chopps-descricao {
+        padding: 60px 0 0 150px;
+        line-height: 1.6;
+        max-width: 64vw;
+        font-size: 18px;
+    }
+    
+    .chopps-descricao h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+        font-weight: 900;
+    }
+    
+    .chopps-descricao h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    
+    .chopps-descricao li {
+        margin-bottom: 0px;
+        padding-right: 40px;
+        font-size: 18px;
+    }
+    
+    .aumenta-letra {
+        font-size: 20px;
+    }
+    .btn-modal {
+        position: relative;
+        top: -10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+}
