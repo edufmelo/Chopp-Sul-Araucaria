@@ -1,5 +1,6 @@
 $(document).ready(function(){
     alternarPalavras();
+    initCarousel();
     waitForElement('.nossos-produtos', function() {
         $('.nossos-produtos').css('display', 'block');
     });
@@ -14,21 +15,169 @@ function waitForElement(selector, callback) {
             clearInterval(checkExist);
             callback();
         }
-    }, 100); // Verifica a cada 100ms
+    }, 100);
+}
+
+// Inicializar carrossel
+function initCarousel() {
+    let currentSlide = 0;
+    const slides = $('.bloco');
+    const totalSlides = slides.length;
+    
+    function getSlidesToShow() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+    
+    let slidesToShow = getSlidesToShow();
+    const maxSlides = Math.max(0, totalSlides - slidesToShow);
+    
+    function updateCarousel() {
+        const slideWidth = 100 / slidesToShow;
+        const translateX = -(currentSlide * slideWidth);
+        $('.pin-wrap').css('transform', `translateX(${translateX}%)`);
+        
+        // Atualizar indicadores
+        $('.carousel-indicator').removeClass('active');
+        const indicatorIndex = Math.min(currentSlide, $('.carousel-indicator').length - 1);
+        $(`.carousel-indicator`).eq(indicatorIndex).addClass('active');
+        
+        // Atualizar botões
+        $('.carousel-btn.prev').toggleClass('disabled', currentSlide === 0);
+        $('.carousel-btn.next').toggleClass('disabled', currentSlide >= maxSlides);
+    }
+    
+    function nextSlide() {
+        if (currentSlide < maxSlides) {
+            currentSlide++;
+            updateCarousel();
+        }
+    }
+    
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateCarousel();
+        }
+    }
+    
+    function goToSlide(index) {
+        if (index >= 0 && index <= maxSlides) {
+            currentSlide = index;
+            updateCarousel();
+        }
+    }
+    
+    // Criar controles do carrossel
+    const numIndicators = Math.ceil(totalSlides / slidesToShow);
+    const carouselControls = `
+        <div class="carousel-controls">
+            <button class="carousel-btn prev" id="carousel-prev">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <div class="carousel-indicators">
+                ${Array.from({length: numIndicators}, (_, i) => 
+                    `<span class="carousel-indicator ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`
+                ).join('')}
+            </div>
+            <button class="carousel-btn next" id="carousel-next">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    `;
+    
+    $('#produtos').append(carouselControls);
+    
+    // Event listeners
+    $('#carousel-next').on('click', nextSlide);
+    $('#carousel-prev').on('click', prevSlide);
+    $('.carousel-indicator').on('click', function() {
+        const slideIndex = parseInt($(this).data('slide'));
+        goToSlide(slideIndex);
+    });
+    
+    // Auto-play
+    let autoPlayInterval = setInterval(function() {
+        if (currentSlide >= maxSlides) {
+            currentSlide = 0;
+        } else {
+            currentSlide++;
+        }
+        updateCarousel();
+    }, 4000);
+    
+    // Pausar auto-play ao hover
+    $('#produtos').hover(
+        function() { clearInterval(autoPlayInterval); },
+        function() {
+            autoPlayInterval = setInterval(function() {
+                if (currentSlide >= maxSlides) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide++;
+                }
+                updateCarousel();
+            }, 4000);
+        }
+    );
+    
+    // Responsividade
+    $(window).on('resize', function() {
+        const newSlidesToShow = getSlidesToShow();
+        if (newSlidesToShow !== slidesToShow) {
+            slidesToShow = newSlidesToShow;
+            currentSlide = Math.min(currentSlide, Math.max(0, totalSlides - slidesToShow));
+            updateCarousel();
+        }
+    });
+    
+    // Suporte a touch/swipe para mobile
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+    
+    $('.pin-wrap').on('touchstart mousedown', function(e) {
+        isDragging = true;
+        startX = e.type === 'touchstart' ? e.originalEvent.touches[0].clientX : e.clientX;
+        e.preventDefault();
+    });
+    
+    $(document).on('touchmove mousemove', function(e) {
+        if (!isDragging) return;
+        endX = e.type === 'touchmove' ? e.originalEvent.touches[0].clientX : e.clientX;
+    });
+    
+    $(document).on('touchend mouseup', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    updateCarousel();
 }
 
 $("#check-apple").on("click", function() {
-
     const mediaQuery = window.matchMedia("(max-width: 768px)");
-    // Obter a cor de fundo do header
     const bgColor = $("header").css("background-color");
 
-    // Verificar se a cor é preta
-    if (bgColor === "rgb(0, 0, 0)") { // #F6AA01 inverso
+    if (bgColor === "rgb(0, 0, 0)") {
+        // Tema claro
         $("header").css("background", "#F6AA01");
-        // Voltar a cor dos links do menu
         $("#itens-menu a").css("color", "rgb(0, 0, 0)");
-        // Restaurar a cor (ou imagem) do elemento ambiente
         $("#logo img").attr("src","images/logos/logo-black.png");
         
         $(".central h1").css("color","#F6AA01");
@@ -46,7 +195,6 @@ $("#check-apple").on("click", function() {
         $("#instagram-sobre").attr("src","images/icons/instagram-amarelo.png");
         $("#facebook-sobre").attr("src","images/icons/facebook-amarelo.png");
 
-        $("#facebook-sobre").attr("src","images/icons/facebook-amarelo.png");
         $("#contato").css("background-image", "url('images/wallpapers/contato-amarelo.png')");
         $("#contato").css("color","#553900");
         $("#whatsapp-contato").attr("src","images/icons/whatsapp-brown.png");
@@ -60,12 +208,10 @@ $("#check-apple").on("click", function() {
         $("#calculadora-chopp h4").css("color","#F6AA01");
         $("#calculadora-chopp label").css("color","#F6AA01");
         $("#calcular").css("background-color","#8f0404");
-        $("#calcular").mouseenter(function() {
-            $(this).css("background-color", "#b40404");
-        });
-        $("#calcular").mouseleave(function() {
-            $(this).css("background-color", "#8f0404"); 
-        });
+        $("#calcular").hover(
+            function() { $(this).css("background-color", "#b40404"); },
+            function() { $(this).css("background-color", "#8f0404"); }
+        );
 
         $("footer").css("background-color","#F6AA01");
         $("footer").css("color","#000000");
@@ -77,17 +223,23 @@ $("#check-apple").on("click", function() {
         $("#insta-footer").attr("src","images/icons/instagram-brown.png");
         $("#face-footer").attr("src","images/icons/facebook-brown.png");
         $("#logo-melo").attr("src","images/logos/logo-melo-preta.png");
+        
+        // Atualizar cores do carrossel
+        $(".carousel-btn").css({
+            "background-color": "#000000",
+            "color": "#F6AA01",
+            "border": "2px solid #F6AA01"
+        });
+        $(".carousel-indicator").css("background-color", "#000000");
+        $(".carousel-indicator.active").css("background-color", "#F6AA01");
+        
         if (mediaQuery.matches) {
             $(".btn-abrir-menu i").css("color","black");
         }
     } else {
-        // Voltar ao amarelo e estilos originais
+        // Tema escuro
         $("header").css("background", "#000000");
-
-        // Alterar a cor dos links do menu
         $("#itens-menu a").css("color", "#F6BD32");
-
-        // Alterar a cor (ou imagem) do elemento ambiente
         $("#logo img").attr("src","images/logos/logo-yellow.png");
 
         $(".central h1").css("color","#000000");
@@ -135,13 +287,23 @@ $("#check-apple").on("click", function() {
         $("#insta-footer").attr("src","images/icons/instagram-amarelo.png");
         $("#face-footer").attr("src","images/icons/facebook-amarelo.png");
         $("#logo-melo").attr("src","images/logos/logo-melo-amarela.png");
-        debugger;
+        
+        // Restaurar cores originais do carrossel
+        $(".carousel-btn").css({
+            "background-color": "#F6AA01",
+            "color": "#000000",
+            "border": "2px solid #000000"
+        });
+        $(".carousel-indicator").css("background-color", "#666");
+        $(".carousel-indicator.active").css("background-color", "#F6AA01");
+        
         if (mediaQuery.matches) {
             $(".btn-abrir-menu i").css("color","#F6BD32");
         }
     }
 });
 
+// Event listeners para redes sociais e contatos
 $(".instagram").on("click", function () {
     window.open("https://www.instagram.com/chopparaucaria", "_blank");
 });
@@ -159,66 +321,12 @@ $(".email").on("click", function(){
 });
 
 $(".telefone").on("click", function(){
-    window.open("tel:+554198010067", "_blank"); // Número de telefone para ligar
+    window.open("tel:+554198010067", "_blank");
 });
 
 $(".desenvolvedor").on("click", function(){
     window.open("https://linktr.ee/edufmelo", "_blank");
 });
-
-gsap.registerPlugin(ScrollTrigger);
-
-// Scroll suave com Locomotive Scroll
-const pageContainer = document.querySelector(".page-container");
-const scroller = new LocomotiveScroll({
-    el: pageContainer,
-    smooth: true
-});
-
-scroller.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(pageContainer, {
-        scrollTop(value) {
-            return arguments.length
-                ? scroller.scrollTo(value, 0, 0)
-                : scroller.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-            return { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight };
-        },
-        pinType: pageContainer.style.transform ? "transform" : "fixed"
-    });
-
-// Animação para as imagens da galeria
-gsap.from(".texto-container", {
-    opacity: 0,
-    scale: 0.8,
-    duration: 1.5,
-    ease: "back.out(1.7)",
-    delay: 0.2,
-    stagger: 0.3
-});
-
-
-
-    const pinWrap = document.querySelector(".pin-wrap");
-    const pinWrapWidth = pinWrap.scrollWidth;
-    const horizontalScrollLength = pinWrapWidth - window.innerWidth;
-    
-    gsap.to(".pin-wrap", {
-        scrollTrigger: {
-            scroller: pageContainer,
-            scrub: true,
-            trigger: "#produtos",
-            pin: true,
-            start: "top top",
-            end: pinWrapWidth,
-        },
-        x: -horizontalScrollLength,
-    });
-    
-    ScrollTrigger.addEventListener("refresh", () => scroller.update());
-    ScrollTrigger.refresh();
-
 
 // Função para alternar palavras
 const palavras = ["EVENTO", "HAPPYHOUR", "RESTAURANTE","BAR","CASAMENTO"];
@@ -231,55 +339,78 @@ function alternarPalavras() {
 }
 setInterval(alternarPalavras, 1500);
 
+// Scroll suave para seções
 function scrollToSection(event, id) {
-    event.preventDefault(); // Impede o comportamento padrão de navegação
-    const $section = $(`#${id}`)
+    event.preventDefault();
+    const $section = $(`#${id}`);
     
-    // Verifique se a rolagem horizontal precisa ser redefinida
-    const offsetTop = $section.offset().top;
-    
-    // Realiza o scroll suave
-    scroller.scrollTo(offsetTop, 0, 0);
-};
+    if ($section.length) {
+        $('html, body').animate({
+            scrollTop: $section.offset().top - 80
+        }, 800, 'easeInOutQuad');
+    }
+}
 
+// Funções dos modais
 function abrirModal(modalId) {
-    $(`#${modalId}`).css('display', 'flex'); // Exibe o modal
+    $(`#${modalId}`).css('display', 'flex');
     $('.nossos-produtos').addClass('blurred');
     $('.pin-wrap').addClass('blurred');
-};
+    $('.carousel-controls').addClass('blurred');
+    $('body').css('overflow', 'hidden');
+}
 
 function fecharModal(modalId) {
-    $(`#${modalId}`).css('display', 'none'); // Oculta o modal
+    $(`#${modalId}`).css('display', 'none');
     $('.nossos-produtos').removeClass('blurred');
     $('.pin-wrap').removeClass('blurred');
-};
+    $('.carousel-controls').removeClass('blurred');
+    $('body').css('overflow', 'auto');
+}
 
+// Fechar modal clicando fora
 $(document).on('click', function (event) {
     $('.janela-modal').each(function () {
         if (event.target === this) {
-            $(this).css('display', 'none'); // Oculta o modal clicado
+            $(this).css('display', 'none');
             $('.nossos-produtos').removeClass('blurred');
             $('.pin-wrap').removeClass('blurred');
+            $('.carousel-controls').removeClass('blurred');
+            $('body').css('overflow', 'auto');
         }
     });
 });
 
+// Fechar modal com ESC
+$(document).on('keydown', function(event) {
+    if (event.key === 'Escape') {
+        $('.janela-modal').css('display', 'none');
+        $('.nossos-produtos').removeClass('blurred');
+        $('.pin-wrap').removeClass('blurred');
+        $('.carousel-controls').removeClass('blurred');
+        $('body').css('overflow', 'auto');
+    }
+});
+
+// Calculadora de chopp
 $('#calcular').on('click', function () {
-    const numPessoas = parseInt($('#num-pessoas').val());
-    const duracaoEvento = parseInt($('#duracao-evento').val());
+    const numPessoas = parseInt($('#num-pessoas').val()) || 0;
+    const duracaoEvento = parseInt($('#duracao-evento').val()) || 0;
 
-    // Cálculo: 0.5L por pessoa por hora
+    if (numPessoas <= 0 || duracaoEvento <= 0) {
+        alert('Por favor, insira valores válidos para número de pessoas e duração do evento.');
+        return;
+    }
+
     const litros = numPessoas * duracaoEvento * 0.5;
-
-    // Atualizar o resultado com animação
     $('#quantidade-litros').text(litros.toFixed(1));
 
-    // Exibir o resultado com animação de fade-in
     $('#resultado').fadeOut(200, function () {
         $(this).fadeIn(200);
     });
 });
 
+// Menu mobile
 let btnMenu = document.getElementById('btn-menu');
 let menu = document.getElementById('menu-mobile');
 let overlay = document.getElementById('overlay-menu');
@@ -294,6 +425,23 @@ menu.addEventListener('click', function() {
 
 overlay.addEventListener('click', function() {
     menu.classList.remove('abrir-menu');
-})
+});
 
+// Fechar menu mobile ao clicar em link
+$('#itens-menu-mobile a').on('click', function(e) {
+    menu.classList.remove('abrir-menu');
+});
 
+// Animação suave para elementos ao scroll
+$(window).on('scroll', function() {
+    $('.texto-container').each(function() {
+        const elementTop = $(this).offset().top;
+        const elementBottom = elementTop + $(this).outerHeight();
+        const viewportTop = $(window).scrollTop();
+        const viewportBottom = viewportTop + $(window).height();
+        
+        if (elementBottom > viewportTop && elementTop < viewportBottom) {
+            $(this).addClass('visible');
+        }
+    });
+});
