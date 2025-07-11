@@ -96,8 +96,8 @@ function initCenterCarousel() {
             <button class="carousel-btn next" id="carousel-next">
                 <i class="bi bi-chevron-right"></i>
             </button>
-        }
-    }
+        </div>
+    `;
     
     function goToSlide(index) {
         if (index >= 0 && index <= maxSlides) {
@@ -357,7 +357,7 @@ setInterval(alternarPalavras, 1500);
 // Scroll suave para seções
 function scrollToSection(event, id) {
     event.preventDefault();
-    const $section = $(`#${id}`);
+    const $section = $(\`#${id}`);
     
     if ($section.length) {
         $('html, body').animate({
@@ -368,7 +368,7 @@ function scrollToSection(event, id) {
 
 // Funções dos modais
 function abrirModal(modalId) {
-    $(`#${modalId}`).css('display', 'flex');
+    $(\`#${modalId}`).css('display', 'flex');
     $('.nossos-produtos').addClass('blurred');
     $('.pin-wrap').addClass('blurred');
     $('.carousel-controls').addClass('blurred');
@@ -376,7 +376,7 @@ function abrirModal(modalId) {
 }
 
 function fecharModal(modalId) {
-    $(`#${modalId}`).css('display', 'none');
+    $(\`#${modalId}`).css('display', 'none');
     $('.nossos-produtos').removeClass('blurred');
     $('.pin-wrap').removeClass('blurred');
     $('.carousel-controls').removeClass('blurred');
