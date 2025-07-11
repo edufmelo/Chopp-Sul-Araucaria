@@ -95,43 +95,43 @@
                 <!-- Seção Produtos -->
                 <section id="produtos">
                     <h2 class="nossos-produtos">Nossos produtos:</h2>
-                    <div class="pin-wrap">
+                    <div class="carousel-container">
+                        <div class="pin-wrap">
+                            <div class="bloco" data-modal="modal-vinho-tinto">
+                                <h3 class="titulo-prod vinho-tinto" onclick="abrirModal('modal-tinto')">La Pioggia Vinho Tinto</h3>
+                                <img class="galeria" src="images/chopps/vinho-tinto.png" onclick="abrirModal('modal-tinto')" alt="Vinho Tinto"/>
+                            </div>
+                            
+                            <div class="bloco" data-modal="modal-golden">
+                                <h3 class="titulo-prod golden" onclick="abrirModal('modal-golden')">Golden Sul Pilsen</h3>
+                                <img class="galeria" src="images/chopps/golden.png" onclick="abrirModal('modal-golden')" alt="Golden" />
+                            </div>
+                            
+                            <div class="bloco active" data-modal="modal-ice">
+                                <h3 class="titulo-prod ice" onclick="abrirModal('modal-ice')">La Pioggia Ice</h3>
+                                <img id="ice" class="galeria" src="images/chopps/ice.png" onclick="abrirModal('modal-ice')" alt="Ice"/>
+                            </div>
 
-                        <div class="bloco">
-                            <h3 class="titulo-prod vinho-tinto" onclick="abrirModal('modal-tinto')">La Pioggia Vinho Tinto</h3>
-                            <img class="galeria" src="images/chopps/vinho-tinto.png" onclick="abrirModal('modal-tinto')" alt="Vinho Tinto"/>
-                        </div>
-                        
-                        <div class="bloco">
-                            <h3 class="titulo-prod golden" onclick="abrirModal('modal-golden')">Golden Sul Pilsen</h3>
-                            <img class="galeria" src="images/chopps/golden.png" onclick="abrirModal('modal-golden')" alt="Golden" />
-                        </div>
-                        
-                        <div class="bloco">
-                            <h3 class="titulo-prod ice" onclick="abrirModal('modal-ice')">La Pioggia Ice</h3>
-                            <img id="ice" class="galeria" src="images/chopps/ice.png" onclick="abrirModal('modal-ice')" alt="Ice"/>
-                        </div>
+                            <div class="bloco" data-modal="modal-morango">
+                                <h3 class="titulo-prod morango" onclick="abrirModal('modal-morango')">La Pioggia Morango</h3>
+                                <img class="galeria" src="images/chopps/ice-morango.png" onclick="abrirModal('modal-morango')" alt="Ice Morango" />
+                            </div>
+                            
+                            <div class="bloco" data-modal="modal-pilsen">
+                                <h3 class="titulo-prod pilsen" onclick="abrirModal('modal-pilsen')">La Pioggia Pilsen</h3>
+                                <img class="galeria" src="images/chopps/pilsen.png" onclick="abrirModal('modal-pilsen')" alt="Pilsen"/>
+                            </div>
 
-                        <div class="bloco">
-                            <h3 class="titulo-prod morango" onclick="abrirModal('modal-morango')">La Pioggia Morango</h3>
-                            <img class="galeria" src="images/chopps/ice-morango.png" onclick="abrirModal('modal-morango')" alt="Ice Morango" />
-                        </div>
-                        
-                        <div class="bloco">
-                            <h3 class="titulo-prod pilsen" onclick="abrirModal('modal-pilsen')">La Pioggia Pilsen</h3>
-                            <img class="galeria" src="images/chopps/pilsen.png" onclick="abrirModal('modal-pilsen')" alt="Pilsen"/>
-                        </div>
+                            <div class="bloco" data-modal="modal-branco">
+                                <h3 class="titulo-prod vinho-branco" onclick="abrirModal('modal-branco')">La Pioggia Vinho Branco</h3>
+                                <img  class="galeria" src="images/chopps/vinho-branco.png" onclick="abrirModal('modal-branco')" alt="Vinho Branco"/>
+                            </div>
 
-                        <div class="bloco">
-                            <h3 class="titulo-prod vinho-branco" onclick="abrirModal('modal-branco')">La Pioggia Vinho Branco</h3>
-                            <img  class="galeria" src="images/chopps/vinho-branco.png" onclick="abrirModal('modal-branco')" alt="Vinho Branco"/>
+                            <div class="bloco" data-modal="modal-vosgeral">
+                                <h3 class="titulo-prod vosgeral" onclick="abrirModal('modal-vosgeral')">Vosgeral IPA </h3>
+                                <img class="galeria vosgeral" src="images/chopps/vosgeral.png" onclick="abrirModal('modal-vosgeral')" alt="Vosgeral"/>
+                            </div>
                         </div>
-
-                        <div class="bloco">
-                            <h3 class="titulo-prod vosgeral" onclick="abrirModal('modal-vosgeral')">Vosgeral IPA </h3>
-                            <img class="galeria vosgeral" src="images/chopps/vosgeral.png" onclick="abrirModal('modal-vosgeral')" alt="Vosgeral"/>
-                        </div>
-
                     </div>
 
                     <div class="janela-modal" id="modal-golden">
@@ -416,5 +416,3 @@
 <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
 <!-- Chamada do arquivo JavaScript -->
 <script src="js/script.js"></script>
-
-

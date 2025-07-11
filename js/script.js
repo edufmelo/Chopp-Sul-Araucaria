@@ -1,6 +1,6 @@
 $(document).ready(function(){
     alternarPalavras();
-    initCarousel();
+    initCenterCarousel();
     waitForElement('.nossos-produtos', function() {
         $('.nossos-produtos').css('display', 'block');
     });
@@ -18,38 +18,51 @@ function waitForElement(selector, callback) {
     }, 100);
 }
 
-// Inicializar carrossel
-function initCarousel() {
-    let currentSlide = 0;
+// Inicializar carrossel com foco central
+function initCenterCarousel() {
     const slides = $('.bloco');
     const totalSlides = slides.length;
+    let currentSlide = 0;
     
-    function getSlidesToShow() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 3;
-    }
-    
-    let slidesToShow = getSlidesToShow();
-    const maxSlides = Math.max(0, totalSlides - slidesToShow);
+    // Encontrar o slide ativo inicial
+    slides.each(function(index) {
+        if ($(this).hasClass('active')) {
+            currentSlide = index;
+        }
+    });
     
     function updateCarousel() {
-        const slideWidth = 100 / slidesToShow;
-        const translateX = -(currentSlide * slideWidth);
-        $('.pin-wrap').css('transform', `translateX(${translateX}%)`);
+        // Remove todas as classes
+        slides.removeClass('active side');
+        
+        // Adiciona classes baseadas na posição
+        slides.each(function(index) {
+            const $slide = $(this);
+            if (index === currentSlide) {
+                $slide.addClass('active');
+            } else if (Math.abs(index - currentSlide) === 1) {
+                $slide.addClass('side');
+            }
+        });
+        
+        // Calcula o deslocamento para centralizar o slide ativo
+        const slideWidth = slides.first().outerWidth(true);
+        const containerWidth = $('.carousel-container').width();
+        const offset = (containerWidth / 2) - (slideWidth / 2) - (currentSlide * slideWidth);
+        
+        $('.pin-wrap').css('transform', `translateX(${offset}px)`);
         
         // Atualizar indicadores
         $('.carousel-indicator').removeClass('active');
-        const indicatorIndex = Math.min(currentSlide, $('.carousel-indicator').length - 1);
-        $(`.carousel-indicator`).eq(indicatorIndex).addClass('active');
+        $(`.carousel-indicator`).eq(currentSlide).addClass('active');
         
         // Atualizar botões
         $('.carousel-btn.prev').toggleClass('disabled', currentSlide === 0);
-        $('.carousel-btn.next').toggleClass('disabled', currentSlide >= maxSlides);
+        $('.carousel-btn.next').toggleClass('disabled', currentSlide === totalSlides - 1);
     }
     
     function nextSlide() {
-        if (currentSlide < maxSlides) {
+        if (currentSlide < totalSlides - 1) {
             currentSlide++;
             updateCarousel();
         }
@@ -59,6 +72,30 @@ function initCarousel() {
         if (currentSlide > 0) {
             currentSlide--;
             updateCarousel();
+        }
+    }
+    
+    function goToSlide(index) {
+        if (index >= 0 && index < totalSlides) {
+            currentSlide = index;
+            updateCarousel();
+        }
+    }
+    
+    // Criar controles do carrossel
+    const carouselControls = `
+        <div class="carousel-controls">
+            <button class="carousel-btn prev" id="carousel-prev">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <div class="carousel-indicators">
+                ${Array.from({length: totalSlides}, (_, i) => 
+                    `<span class="carousel-indicator ${i === currentSlide ? 'active' : ''}" data-slide="${i}"></span>`
+                ).join('')}
+            </div>
+            <button class="carousel-btn next" id="carousel-next">
+                <i class="bi bi-chevron-right"></i>
+            </button>
         }
     }
     
@@ -97,9 +134,17 @@ function initCarousel() {
         goToSlide(slideIndex);
     });
     
+    // Clique nos slides para centralizar
+    slides.on('click', function(e) {
+        const clickedIndex = slides.index(this);
+        if (clickedIndex !== currentSlide) {
+            goToSlide(clickedIndex);
+        }
+    });
+    
     // Auto-play
     let autoPlayInterval = setInterval(function() {
-        if (currentSlide >= maxSlides) {
+        if (currentSlide >= totalSlides - 1) {
             currentSlide = 0;
         } else {
             currentSlide++;
@@ -112,7 +157,7 @@ function initCarousel() {
         function() { clearInterval(autoPlayInterval); },
         function() {
             autoPlayInterval = setInterval(function() {
-                if (currentSlide >= maxSlides) {
+                if (currentSlide >= totalSlides - 1) {
                     currentSlide = 0;
                 } else {
                     currentSlide++;
@@ -124,12 +169,7 @@ function initCarousel() {
     
     // Responsividade
     $(window).on('resize', function() {
-        const newSlidesToShow = getSlidesToShow();
-        if (newSlidesToShow !== slidesToShow) {
-            slidesToShow = newSlidesToShow;
-            currentSlide = Math.min(currentSlide, Math.max(0, totalSlides - slidesToShow));
-            updateCarousel();
-        }
+        updateCarousel();
     });
     
     // Suporte a touch/swipe para mobile
@@ -142,31 +182,6 @@ function initCarousel() {
         startX = e.type === 'touchstart' ? e.originalEvent.touches[0].clientX : e.clientX;
         e.preventDefault();
     });
-    
-    $(document).on('touchmove mousemove', function(e) {
-        if (!isDragging) return;
-        endX = e.type === 'touchmove' ? e.originalEvent.touches[0].clientX : e.clientX;
-    });
-    
-    $(document).on('touchend mouseup', function(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const threshold = 50;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-    
     updateCarousel();
 }
 
