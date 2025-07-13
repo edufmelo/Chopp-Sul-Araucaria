@@ -1,191 +1,137 @@
 $(document).ready(function(){
-    alternarPalavras();
-    initCenterCarousel();
-    waitForElement('.nossos-produtos', function() {
-        $('.nossos-produtos').css('display', 'block');
-    });
-    waitForElement('.Btn-whats', function() {
-        $('.Btn-whats').css('display', 'flex');
-    });
-});
+    const carrosselWrapper = document.querySelector('.carrossel');
+    const slides = document.querySelectorAll('.bloco');
+    const prevButton = document.getElementById('carrossel-prev');
+    const nextButton = document.getElementById('carrossel-next');
 
-function waitForElement(selector, callback) {
-    const checkExist = setInterval(function() {
-        if ($(selector).length) {
-            clearInterval(checkExist);
-            callback();
-        }
-    }, 100);
-}
+    if (!carrosselWrapper || slides.length === 0 || !prevButton || !nextButton) {
+        console.error('Elementos essenciais do carrossel não foram encontrados.');
+        return;
+    }
 
-// Inicializar carrossel com foco central
-function initCenterCarousel() {
-    const slides = $('.bloco');
-    const totalSlides = slides.length;
-    let currentSlide = 0;
-    
-    // Encontrar o slide ativo inicial
-    slides.each(function(index) {
-        if ($(this).hasClass('active')) {
-            currentSlide = index;
+    let currentIndex = 0; // Inicia com o primeiro item como central
+
+    // Função para centralizar o slide ativo
+    function centerActiveSlide() {
+        const activeSlide = slides[currentIndex];
+        if (!activeSlide) return;
+
+        const container = carrosselWrapper.parentElement;
+        const containerWidth = container.offsetWidth;
+        const slideWidth = activeSlide.offsetWidth;
+
+        // Pega o valor do 'gap' diretamente do CSS do carrossel
+        const style = window.getComputedStyle(carrosselWrapper);
+        const gap = parseInt(style.getPropertyValue('gap')) || 0;
+
+        // --- CÁLCULO REFINADO ---
+        // Calcula a posição inicial de todos os slides até o ativo.
+        // Somamos a largura de cada slide anterior (index < currentIndex) e o gap entre eles.
+        let totalOffset = 0;
+        for (let i = 0; i < currentIndex; i++) {
+            totalOffset += slides[i].offsetWidth + gap;
         }
-    });
-    
-    function updateCarousel() {
-        // Remove todas as classes
-        slides.removeClass('active side');
-        
-        // Adiciona classes baseadas na posição
-        slides.each(function(index) {
-            const $slide = $(this);
-            if (index === currentSlide) {
-                $slide.addClass('active');
-            } else if (Math.abs(index - currentSlide) === 1) {
-                $slide.addClass('side');
+
+        // O ponto central do slide ativo é sua largura/2 somada ao deslocamento total anterior.
+        const slideCenter = totalOffset + (slideWidth / 2);
+        // O ponto central do contêiner.
+        const containerCenter = containerWidth / 2;
+
+        // O deslocamento final é a diferença para alinhar os dois centros.
+        const offset = containerCenter - slideCenter;
+
+        carrosselWrapper.style.transform = `translateX(${offset}px)`;
+    }
+    // Função que atualiza a aparência dos slides e chama a centralização
+    function updatecarrossel() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'side');
+
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            } else if (index === currentIndex - 1 || index === currentIndex + 1) {
+                slide.classList.add('side');
             }
         });
-        
-        // Calcula o deslocamento para centralizar o slide ativo
-        const slideWidth = slides.first().outerWidth(true);
-        const containerWidth = $('.carousel-container').width();
-        const offset = (containerWidth / 2) - (slideWidth / 2) - (currentSlide * slideWidth);
-        
-        $('.pin-wrap').css('transform', `translateX(${offset}px)`);
-        
-        // Atualizar indicadores
-        $('.carousel-indicator').removeClass('active');
-        $(`.carousel-indicator`).eq(currentSlide).addClass('active');
-        
-        // Atualizar botões
-        $('.carousel-btn.prev').toggleClass('disabled', currentSlide === 0);
-        $('.carousel-btn.next').toggleClass('disabled', currentSlide === totalSlides - 1);
-    }
-    
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-            updateCarousel();
-        }
-    }
-    
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-            updateCarousel();
-        }
-    }
-    
-    function goToSlide(index) {
-        if (index >= 0 && index < totalSlides) {
-            currentSlide = index;
-            updateCarousel();
-        }
-    }
-    
-    // Criar controles do carrossel
-    const carouselControls = `
-        <div class="carousel-controls">
-            <button class="carousel-btn prev" id="carousel-prev">
-                <i class="bi bi-chevron-left"></i>
-            </button>
-            <div class="carousel-indicators">
-                ${Array.from({length: totalSlides}, (_, i) => 
-                    `<span class="carousel-indicator ${i === currentSlide ? 'active' : ''}" data-slide="${i}"></span>`
-                ).join('')}
-            </div>
-            <button class="carousel-btn next" id="carousel-next">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-        </div>
-    `;
-    
-    function goToSlide(index) {
-        if (index >= 0 && index <= maxSlides) {
-            currentSlide = index;
-            updateCarousel();
-        }
-    }
-    
-    // Criar controles do carrossel
-    const numIndicators = Math.ceil(totalSlides / slidesToShow);
-    const carouselControls = `
-        <div class="carousel-controls">
-            <button class="carousel-btn prev" id="carousel-prev">
-                <i class="bi bi-chevron-left"></i>
-            </button>
-            <div class="carousel-indicators">
-                ${Array.from({length: numIndicators}, (_, i) => 
-                    `<span class="carousel-indicator ${i === 0 ? 'active' : ''}" data-slide="${i}"></span>`
-                ).join('')}
-            </div>
-            <button class="carousel-btn next" id="carousel-next">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-        </div>
-    `;
-    
-    $('#produtos').append(carouselControls);
-    
-    // Event listeners
-    $('#carousel-next').on('click', nextSlide);
-    $('#carousel-prev').on('click', prevSlide);
-    $('.carousel-indicator').on('click', function() {
-        const slideIndex = parseInt($(this).data('slide'));
-        goToSlide(slideIndex);
-    });
-    
-    // Clique nos slides para centralizar
-    slides.on('click', function(e) {
-        const clickedIndex = slides.index(this);
-        if (clickedIndex !== currentSlide) {
-            goToSlide(clickedIndex);
-        }
-    });
-    
-    // Auto-play
-    let autoPlayInterval = setInterval(function() {
-        if (currentSlide >= totalSlides - 1) {
-            currentSlide = 0;
-        } else {
-            currentSlide++;
-        }
-        updateCarousel();
-    }, 4000);
-    
-    // Pausar auto-play ao hover
-    $('#produtos').hover(
-        function() { clearInterval(autoPlayInterval); },
-        function() {
-            autoPlayInterval = setInterval(function() {
-                if (currentSlide >= totalSlides - 1) {
-                    currentSlide = 0;
-                } else {
-                    currentSlide++;
-                }
-                updateCarousel();
-            }, 4000);
-        }
-    );
-    
-    // Responsividade
-    $(window).on('resize', function() {
-        updateCarousel();
-    });
-    
-    // Suporte a touch/swipe para mobile
-    let startX = 0;
-    let endX = 0;
-    let isDragging = false;
-    
-    $('.pin-wrap').on('touchstart mousedown', function(e) {
-        isDragging = true;
-        startX = e.type === 'touchstart' ? e.originalEvent.touches[0].clientX : e.clientX;
-        e.preventDefault();
-    });
-    updateCarousel();
-}
 
-$("#check-apple").on("click", function() {
+        centerActiveSlide();
+        AtualizaBotoes();
+    }
+
+    // Função para atualizar o estado dos botões
+    function AtualizaBotoes() {
+        prevButton.disabled = currentIndex <= 0;
+        nextButton.disabled = currentIndex >= slides.length - 1;
+
+        const disabledStyle = { opacity: '0.5', cursor: 'not-allowed' };
+        const enabledStyle = { opacity: '1', cursor: 'pointer' };
+
+        Object.assign(prevButton.style, prevButton.disabled ? disabledStyle : enabledStyle);
+        Object.assign(nextButton.style, nextButton.disabled ? disabledStyle : enabledStyle);
+    }
+
+    // Evento de clique para o botão "Próximo"
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            updatecarrossel();
+        }
+    });
+
+    // Evento de clique para o botão "Anterior"
+    prevButton.addEventListener('click',() => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updatecarrossel();
+        }
+    });
+
+    $(document).on('keydown', function (event) { // Adiciona suporte a navegação por teclado - Perguntar se o Bruno quer isso
+        if (event.key === 'ArrowLeft') {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updatecarrossel();
+            }
+        } else if (event.key === 'ArrowRight') {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updatecarrossel();
+            }
+        }
+    });
+
+    // Adiciona evento de clique em cada slide para centralizá-lo
+    slides.forEach((slide, index) => {
+        slide.addEventListener('click', (e) => {
+             // Se o slide clicado já não for o ativo, atualiza o carrossel
+            if (currentIndex !== index) {
+                currentIndex = index;
+                updatecarrossel();
+            }
+
+            // Abertura do modal não foi alterada, mas o clique no slide não deve interferir
+            // na centralização se ele já estiver ativo.
+            if (e.target.classList.contains('galeria') || e.target.classList.contains('titulo-prod')) {
+                const modalId = slide.closest('.bloco').getAttribute('data-modal');
+                 if (modalId) {
+                    abrirModal(modalId);
+                }
+            }
+        });
+    });
+    
+    // Funções auxiliares e outros scripts
+    alternarPalavras();
+    waitForElement('.nossos-produtos', () => $('.nossos-produtos').css('display', 'block'));
+    waitForElement('.Btn-whats', () => $('.Btn-whats').css('display', 'flex'));
+
+    // Inicializa o carrossel na posição correta
+    updatecarrossel();
+    
+    // Atualiza o carrossel no redimensionamento da janela para manter a centralização
+    window.addEventListener('resize', centerActiveSlide);
+
+    $("#check-apple").on("click", function() {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
     const bgColor = $("header").css("background-color");
 
@@ -194,6 +140,7 @@ $("#check-apple").on("click", function() {
         $("header").css("background", "#F6AA01");
         $("#itens-menu a").css("color", "rgb(0, 0, 0)");
         $("#logo img").attr("src","images/logos/logo-black.png");
+        $("btn-abrir-menu i").css("color", "#F6BD32");
         
         $(".central h1").css("color","#F6AA01");
         $(".central p").css("color","#F6AA01");
@@ -203,6 +150,12 @@ $("#check-apple").on("click", function() {
         $("#produtos").css("background-image","url('images/wallpapers/yellow.png')");
         $(".nossos-produtos").css("color","#000000");
         $(".titulo-prod").css("color","#000000");
+        // Atualizar cores do carrossel
+        $(".carrossel-nav").css({
+            "background-color": "#000000",
+            "color": "#F6AA01",
+            "border": "1px solid #F6AA01"
+        });
 
         $("#sobre").css("background-image", "url('images/wallpapers/black.png')");
         $("#subtitulo-sobre").css("color","#808080");
@@ -219,14 +172,20 @@ $("#check-apple").on("click", function() {
         $(".subtitulo-contato").css("color","#000000");
 
         $("#calculadora").css("background-image","url('images/wallpapers/black.png')");
-        $("#calculadora-chopp h2").css("color","#F6AA01");
-        $("#calculadora-chopp h4").css("color","#F6AA01");
-        $("#calculadora-chopp label").css("color","#F6AA01");
         $("#calcular").css("background-color","#8f0404");
         $("#calcular").hover(
             function() { $(this).css("background-color", "#b40404"); },
             function() { $(this).css("background-color", "#8f0404"); }
         );
+        $("#resultado").css("border","2px solid #382500ff");
+        $("#resultado").css("background-color","#f6a80148");
+        $("#resultado h3").css("color","#382500ff");
+        $("#resultado p").css("color","#382500ff");
+        $("#calculadora-chopp").css("background-color","#F6AA01");
+        $("#calculadora-chopp").css("box-shadow","0 20px 40px rgba(250, 188, 55, 0.15)");
+        $("#calculadora-chopp h2").css("color","#382500ff");
+        $("#calculadora-chopp h4").css("color","#382500ff");
+        $("#calculadora-chopp label").css("color","#382500ff");
 
         $("footer").css("background-color","#F6AA01");
         $("footer").css("color","#000000");
@@ -239,23 +198,15 @@ $("#check-apple").on("click", function() {
         $("#face-footer").attr("src","images/icons/facebook-brown.png");
         $("#logo-melo").attr("src","images/logos/logo-melo-preta.png");
         
-        // Atualizar cores do carrossel
-        $(".carousel-btn").css({
-            "background-color": "#000000",
-            "color": "#F6AA01",
-            "border": "2px solid #F6AA01"
-        });
-        $(".carousel-indicator").css("background-color", "#000000");
-        $(".carousel-indicator.active").css("background-color", "#F6AA01");
-        
         if (mediaQuery.matches) {
             $(".btn-abrir-menu i").css("color","black");
-        }
+        } 
     } else {
         // Tema escuro
         $("header").css("background", "#000000");
         $("#itens-menu a").css("color", "#F6BD32");
         $("#logo img").attr("src","images/logos/logo-yellow.png");
+        $(".btn-abrir-menu i").css("color","#F6BD32");
 
         $(".central h1").css("color","#000000");
         $(".central p").css("color","#000000");
@@ -271,6 +222,11 @@ $("#check-apple").on("click", function() {
         $(".pilsen").css("color","#d2c9bf");
         $(".golden").css("color","#ffc300");
         $(".vosgeral").css("color","#4f7374");
+        $(".carrossel-nav").css({
+            "background-color": "rgba(246, 170, 1, 0.8)",
+            "color": "#000",
+            "border": "1px solid #000000"
+        });
 
         $("#sobre").css("background-image", "url('images/wallpapers/yellow.png')");
         $("#subtitulo-sobre").css("color","#000000");
@@ -287,10 +243,21 @@ $("#check-apple").on("click", function() {
         $("#instagram-contato").attr("src","images/icons/instagram-amarelo.png");
 
         $("#calculadora").css("background-image","url('images/wallpapers/yellow.png')");
-        $("#calculadora-chopp h2").css("color","#000000");
-        $("#calculadora-chopp h4").css("color","#000000");
-        $("#calculadora-chopp label").css("color","#000000");
-        $("#calcular").css("background-color","#3d0303");
+        $("#calcular").css("background-color","#b40404");
+
+        $("#resultado").css("border","2px solid #F6AA01");
+        $("#resultado").css("background-color","rgba(246, 170, 1, 0.1)");
+        $("#resultado h3").css("color","#F6AA01");
+        $("#resultado p").css("color","#F6AA01");
+        $("#calculadora-chopp").css("background-color","#000000");
+        $("#calculadora-chopp").css("box-shadow","0 20px 40px rgba(0, 0, 0, 0.473)");
+        $("#calculadora-chopp h2").css("color","#F6AA01");
+        $("#calculadora-chopp h4").css("color","#F6AA01");
+        $("#calculadora-chopp label").css("color","#F6AA01");
+        $("#calcular").hover(
+            function() { $(this).css("background-color", "#880404"); },
+            function() { $(this).css("background-color", "#b40404"); }
+        );
 
         $("footer").css("background-color","#000000");
         $("footer").css("color","#333");
@@ -303,20 +270,18 @@ $("#check-apple").on("click", function() {
         $("#face-footer").attr("src","images/icons/facebook-amarelo.png");
         $("#logo-melo").attr("src","images/logos/logo-melo-amarela.png");
         
-        // Restaurar cores originais do carrossel
-        $(".carousel-btn").css({
-            "background-color": "#F6AA01",
-            "color": "#000000",
-            "border": "2px solid #000000"
-        });
-        $(".carousel-indicator").css("background-color", "#666");
-        $(".carousel-indicator.active").css("background-color", "#F6AA01");
-        
-        if (mediaQuery.matches) {
-            $(".btn-abrir-menu i").css("color","#F6BD32");
         }
-    }
+    });
 });
+
+function waitForElement(selector, callback) {
+    const checkExist = setInterval(function() {
+        if ($(selector).length) {
+            clearInterval(checkExist);
+            callback();
+        }
+    }, 100);
+}
 
 // Event listeners para redes sociais e contatos
 $(".instagram").on("click", function () {
@@ -357,30 +322,29 @@ setInterval(alternarPalavras, 1500);
 // Scroll suave para seções
 function scrollToSection(event, id) {
     event.preventDefault();
-    const $section = $(\`#${id}`);
-    
+    const $section = $(`#${id}`);
+
     if ($section.length) {
         $('html, body').animate({
-            scrollTop: $section.offset().top - 80
-        }, 800, 'easeInOutQuad');
+            scrollTop: $section.offset().top - 80 // você pode ajustar esse valor se tiver um header fixo
+        }, 800, 'swing'); // duração e tipo de easing
     }
 }
 
-// Funções dos modais
 function abrirModal(modalId) {
-    $(\`#${modalId}`).css('display', 'flex');
+    $(`#${modalId}`).css('display', 'flex');
     $('.nossos-produtos').addClass('blurred');
-    $('.pin-wrap').addClass('blurred');
-    $('.carousel-controls').addClass('blurred');
+    $('.carrossel').addClass('blurred');
+    $('.carrossel-controls').addClass('blurred');
     $('body').css('overflow', 'hidden');
 }
 
 function fecharModal(modalId) {
-    $(\`#${modalId}`).css('display', 'none');
+    $(`#${modalId}`).css('display', 'none');
     $('.nossos-produtos').removeClass('blurred');
-    $('.pin-wrap').removeClass('blurred');
-    $('.carousel-controls').removeClass('blurred');
-    $('body').css('overflow', 'auto');
+    $('.carrossel').removeClass('blurred');
+    $('.carrossel-controls').removeClass('blurred');
+    $('body').css('overflow', '');
 }
 
 // Fechar modal clicando fora
@@ -389,9 +353,9 @@ $(document).on('click', function (event) {
         if (event.target === this) {
             $(this).css('display', 'none');
             $('.nossos-produtos').removeClass('blurred');
-            $('.pin-wrap').removeClass('blurred');
-            $('.carousel-controls').removeClass('blurred');
-            $('body').css('overflow', 'auto');
+            $('.carrossel').removeClass('blurred');
+            $('.carrossel-controls').removeClass('blurred');
+            $('body').css('overflow', '');
         }
     });
 });
@@ -401,9 +365,9 @@ $(document).on('keydown', function(event) {
     if (event.key === 'Escape') {
         $('.janela-modal').css('display', 'none');
         $('.nossos-produtos').removeClass('blurred');
-        $('.pin-wrap').removeClass('blurred');
-        $('.carousel-controls').removeClass('blurred');
-        $('body').css('overflow', 'auto');
+        $('.carrossel').removeClass('blurred');
+        $('.carrossel-controls').removeClass('blurred');
+        $('body').css('overflow', '');
     }
 });
 
@@ -422,7 +386,30 @@ $('#calcular').on('click', function () {
 
     $('#resultado').fadeOut(200, function () {
         $(this).fadeIn(200);
+        $('#div-btn-wpp').slideDown(); // Mostra o botão com uma animação suave
+
     });
+});
+
+// NOVO: Evento de clique para o botão de orçamento do WhatsApp
+$('#btn-orcamento-whats').on('click', function() {
+    // Pega a quantidade de litros calculada
+    const quantidadeLitros = $('#quantidade-litros').text();
+    
+    // Monta a mensagem
+    const mensagem = `Olá! Fiz um cálculo no site e gostaria de um orçamento para ${quantidadeLitros} litros de chopp.`;
+    
+    // Codifica a mensagem para ser usada em uma URL
+    const mensagemCodificada = encodeURIComponent(mensagem);
+    
+    // Define o número de telefone (o mesmo usado no restante do site)
+    const numeroWhatsapp = '554198010067';
+    
+    // Cria o link completo da API do WhatsApp
+    const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`;
+    
+    // Abre o link em uma nova aba
+    window.open(urlWhatsapp, '_blank');
 });
 
 // Menu mobile
